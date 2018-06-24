@@ -1,6 +1,6 @@
 {
-  "name": "data-explorer-web-ui",
-  "short_name": "data-explorer-web-ui",
+  "name": "data-explorer",
+  "short_name": "data-explorer",
   "icons": [
     {
       "src": "/img/icons/android-chrome-192x192.png",
