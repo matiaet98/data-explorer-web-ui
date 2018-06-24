@@ -7,21 +7,40 @@
             <p class="card-text">
                 <b-row class="my-1">
                     <b-col sm="4">
-                        <label for="fecha-desde">Desde:</label>
+                        <label for="es-anual">Anual:</label>
                     </b-col>
                     <b-col sm="8">
-                        <vue-datepicker-local id="fecha-desde" v-model="fechaDesde" clearable format="MMYYYY" :local="this.pickerLocalData"/>
+                        <switches id="es-anual" v-model="periodoAnual" theme="bootstrap" color="primary"></switches>
                     </b-col>
                 </b-row>
-                <b-row class="my-1">
-                    <b-col sm="4">
-                        <label for="fecha-hasta">Hasta:</label>
-                    </b-col>
-                    <b-col sm="8">
-                        <vue-datepicker-local id="fecha-hasta" v-model="fechaHasta" clearable format="MMYYYY" :local="this.pickerLocalData"/>
-                    </b-col>
-                </b-row>
-                
+                <div id="divAnual" v-if="this.periodoAnual">
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="fecha-anio">Año:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <vue-datepicker-local id="fecha-anio" v-model="fechaAnio" clearable format="YYYY" :local="this.pickerLocalData"/>
+                        </b-col>
+                    </b-row>
+                </div>
+                <div id="divMensual" v-else>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="fecha-desde">Desde:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <vue-datepicker-local id="fecha-desde" v-model="fechaDesde" clearable format="MM/YYYY" :local="this.pickerLocalData"/>
+                        </b-col>
+                    </b-row>
+                    <b-row class="my-1">
+                        <b-col sm="4">
+                            <label for="fecha-hasta">Hasta:</label>
+                        </b-col>
+                        <b-col sm="8">
+                            <vue-datepicker-local id="fecha-hasta" v-model="fechaHasta" clearable format="MM/YYYY" :local="this.pickerLocalData"/>
+                        </b-col>
+                    </b-row>
+                </div>                
             </p>
         </b-card-body>
     </b-card>
@@ -69,10 +88,22 @@ import Switches from 'vue-switches';
 export default class QueryBuilder extends Vue {
     fechaDesde : Date = new Date();
     fechaHasta : Date = new Date();
-    pickerLocalData: object = {
+    fechaAnio : Date = new Date();
+    periodoAnual : boolean = false;
+    
+    readonly pickerLocalData: object = {
         yearSuffix: '',
         monthsHead: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
         months: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']
+    }
+    getAnio() : string{
+        return fechaAnio.getFullYear().toString();
+    }
+    getMesDesde() : string{
+        return fechaDesde.getMonth().toString();
+    }
+    getMesHasta() : string{
+        return fechaDesde.getMonth().toString();
     }
 }
 </script>
