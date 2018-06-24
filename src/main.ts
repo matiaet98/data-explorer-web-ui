@@ -6,6 +6,7 @@ import './registerServiceWorker';
 import BootstrapVue from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'vue-datepicker-local/dist/vue-datepicker-local.css';
 
 Vue.use(BootstrapVue);
 
